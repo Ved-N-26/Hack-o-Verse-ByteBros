@@ -1,0 +1,7 @@
+{
+  "name": "TechCompare AI",
+  "description": "A high-end comparison platform for laptops, featuring AI-driven performance indexing and a Gemini-powered tech concierge.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
