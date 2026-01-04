@@ -1,4 +1,3 @@
-
 import { Laptop, PCPart } from './types';
 
 export const MOCK_LAPTOPS: Laptop[] = [
@@ -15,7 +14,7 @@ export const MOCK_LAPTOPS: Laptop[] = [
     screen: { nits: 500, srgb: 100, resolution: '2560 x 1664' },
     benchmarks: { cpu: 85, gpu: 72, buildQuality: 98 },
     price: 114900,
-    image: 'https://images.unsplash.com/photo-1611186871348-b1ec696e5237?auto=format&fit=crop&q=80&w=600&h=400'
+    image: 'https://cdn.mos.cms.futurecdn.net/v2/t:0,l:328,cw:2099,ch:1181,q:80,w:2099/FfWtj8AdVGanoRqUPFt6jT.jpg'
   },
   {
     id: '2',
@@ -45,7 +44,7 @@ export const MOCK_LAPTOPS: Laptop[] = [
     screen: { nits: 250, srgb: 45, resolution: '1920 x 1080' },
     benchmarks: { cpu: 68, gpu: 45, buildQuality: 65 },
     price: 54990,
-    image: 'https://images.unsplash.com/photo-1544006659-f0b21f04cb1d?auto=format&fit=crop&q=80&w=600&h=400'
+    image: 'https://in-files.apjonlinecdn.com/landingpages/npi/hp-victus-15-laptop/intel/images/w100_slide1_v2.png'
   },
   {
     id: '4',
@@ -150,7 +149,7 @@ export const MOCK_LAPTOPS: Laptop[] = [
     screen: { nits: 1000, srgb: 100, resolution: '3840 x 2160 (Mini-LED)' },
     benchmarks: { cpu: 99, gpu: 100, buildQuality: 88 },
     price: 549990,
-    image: 'https://images.unsplash.com/photo-1544006659-f0b21f04cb1d?auto=format&fit=crop&q=80&w=600&h=400'
+    image: 'https://rukminim2.flixcart.com/image/480/640/xif0q/computer/3/t/j/-original-imahcyp7p4jvn3d4.jpeg?q=90'
   },
   {
     id: '11',
@@ -180,7 +179,7 @@ export const MOCK_LAPTOPS: Laptop[] = [
     screen: { nits: 400, srgb: 100, resolution: '2256 x 1504' },
     benchmarks: { cpu: 72, gpu: 35, buildQuality: 93 },
     price: 139990,
-    image: 'https://images.unsplash.com/photo-1589561253898-768105ca91a8?auto=format&fit=crop&q=80&w=600&h=400'
+    image: 'https://www.express-service.com.ua/upload/iblock/dfa/wvj42vk1tat6rp756b9ys0985kzbo53d/6523e085b47f2_1724564_zoom.jpg'
   },
   {
     id: '13',
@@ -210,7 +209,7 @@ export const MOCK_LAPTOPS: Laptop[] = [
     screen: { nits: 300, srgb: 100, resolution: '2560 x 1440' },
     benchmarks: { cpu: 94, gpu: 90, buildQuality: 82 },
     price: 159990,
-    image: 'https://images.unsplash.com/photo-1558985250-27a406d64cb3?auto=format&fit=crop&q=80&w=600&h=400'
+    image: 'https://www.hp.com/content/dam/sites/omen/worldwide/laptops/2023-omen-16-intel/hero-1-v2-2x.png'
   },
   {
     id: '15',

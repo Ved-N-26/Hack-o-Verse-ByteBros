@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { MOCK_PARTS } from '../constants';
 import { PCBuild, PCPart } from '../types';
@@ -180,7 +179,7 @@ const PCBuilderSection: React.FC = () => {
 
         {/* Right Column: Active Build Summary */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 shadow-2xl overflow-hidden h-full flex flex-col sticky top-24">
+          <div className="glass-panel border border-slate-800 rounded-3xl p-8 shadow-2xl overflow-hidden h-full flex flex-col sticky top-24">
             <div className="flex items-center justify-between mb-8">
                <div className="flex items-center gap-3">
                   <Layers size={18} className={activeBuildId === 'build-a' ? 'text-blue-400' : 'text-cyan-400'} />
@@ -221,13 +220,13 @@ const PCBuilderSection: React.FC = () => {
                        <AlertTriangle className="text-red-500 animate-bounce" size={20} />
                      )}
                      <span className={`text-xs font-black uppercase tracking-widest ${activeStats.comp.compatible ? 'text-emerald-500' : 'text-red-500'}`}>
-                       {activeStats.comp.compatible ? 'Topology_Sync_Optimal' : 'Hardware_Conflict_Detected'}
+                       {activeStats.comp.compatible ? 'Topology_Sync_Optimal' : 'Hardware_Conflict'}
                      </span>
                    </div>
                    <div className="space-y-3">
                       {activeStats.comp.compatible ? (
                         <p className="text-[11px] text-slate-400 leading-relaxed italic">
-                          All hardware handshakes verified. Power delivery is within stable operating parameters for high-load scenarios.
+                          All hardware handshakes verified. Power delivery is within stable operating parameters.
                         </p>
                       ) : (
                         activeStats.comp.issues.map((issue, i) => (
@@ -244,11 +243,10 @@ const PCBuilderSection: React.FC = () => {
               <div className="space-y-6 mt-auto">
                  <button 
                    className={`w-full group relative text-white font-bold py-5 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 uppercase text-[11px] tracking-[0.2em] border-t border-white/10 active:scale-95 disabled:opacity-30 disabled:grayscale overflow-hidden ${activeBuildId === 'build-a' ? 'bg-blue-600 hover:bg-blue-500 shadow-blue-600/30' : 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-600/30'}`}
-                   onClick={() => alert("Deployment manifest generated and stored in local cache.")}
+                   onClick={() => alert("Deployment manifest generated.")}
                    disabled={!activeStats.comp.compatible || activeStats.price === 0}
                  >
                    <span className="relative z-10">Execute_Protocol_{activeBuildId === 'build-a' ? 'A' : 'B'}</span>
-                   <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[0%] transition-all duration-700" />
                  </button>
               </div>
             </div>
@@ -263,16 +261,6 @@ const PCBuilderSection: React.FC = () => {
           onClose={() => setShowComparison(false)} 
         />
       )}
-
-      <style>{`
-        .animate-spin-slow {
-          animation: spin 8s linear infinite;
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 };

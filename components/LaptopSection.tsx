@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { MOCK_LAPTOPS } from '../constants';
 import { Laptop } from '../types';
@@ -95,10 +94,6 @@ const LaptopSection: React.FC = () => {
     }
   };
 
-  const removeStagedLink = (index: number) => {
-    setStagedLinks(stagedLinks.filter((_, i) => i !== index));
-  };
-
   const processBatch = async () => {
     if (stagedLinks.length === 0) return;
     setIsBatchProcessing(true);
@@ -126,29 +121,29 @@ const LaptopSection: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-8 section-fade">
       {/* Filters Sidebar */}
-      <aside className="lg:w-72 shrink-0">
-        <div className="glass-panel border-slate-800 rounded-3xl p-6 bg-slate-950/40 sticky top-24 transition-all duration-300">
+      <aside className="lg:w-80 shrink-0">
+        <div className="glass-panel border-slate-800 rounded-3xl p-8 bg-slate-950/40 sticky top-24 transition-all duration-300">
           <button 
             onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
             className="w-full flex items-center justify-between mb-2 group"
           >
-            <div className="flex items-center gap-2">
-              <Filter size={14} className={isFiltersExpanded ? 'text-blue-400' : 'text-slate-500'} />
-              <h3 className={`text-xs font-black tech-font uppercase tracking-widest transition-colors ${isFiltersExpanded ? 'text-blue-400' : 'text-slate-300 group-hover:text-blue-300'}`}>
+            <div className="flex items-center gap-3">
+              <Filter size={18} className={isFiltersExpanded ? 'text-blue-400' : 'text-slate-500'} />
+              <h3 className={`text-sm font-black tech-font uppercase tracking-widest transition-colors ${isFiltersExpanded ? 'text-blue-400' : 'text-slate-300 group-hover:text-blue-300'}`}>
                 Filter_Grid
               </h3>
             </div>
             <div className={`transition-transform duration-300 ${isFiltersExpanded ? 'rotate-180' : ''}`}>
-              <ChevronDown size={16} className="text-slate-500 group-hover:text-blue-400" />
+              <ChevronDown size={20} className="text-slate-500 group-hover:text-blue-400" />
             </div>
           </button>
 
-          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isFiltersExpanded ? 'max-h-[1000px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
-            <div className="space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar pr-2 pb-2">
+          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isFiltersExpanded ? 'max-h-[1400px] opacity-100 mt-8' : 'max-h-0 opacity-0'}`}>
+            <div className="space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar pr-3 pb-3">
               <div className="flex justify-end">
                 <button 
                   onClick={() => setFilters({ brands: [], ram: [], display: [], storage: [], cpuBrand: [], weightRange: [], priceRange: 600000 })}
-                  className="text-[9px] font-bold text-slate-500 hover:text-white transition-colors"
+                  className="text-[10px] font-bold text-slate-500 hover:text-white transition-colors uppercase tracking-widest"
                 >
                   RESET_ALL
                 </button>
@@ -156,23 +151,23 @@ const LaptopSection: React.FC = () => {
 
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600" size={12} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600" size={16} />
                 <input 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search models..."
-                  className="w-full bg-slate-900/80 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-[10px] tech-font focus:outline-none focus:border-blue-500/50"
+                  className="w-full bg-slate-900/80 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-sm tech-font focus:outline-none focus:border-blue-500/50"
                 />
               </div>
 
               {/* Price Slider */}
               <div>
-                <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Price Range: ₹{filters.priceRange.toLocaleString()}</p>
+                <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Price Limit: ₹{filters.priceRange.toLocaleString()}</p>
                 <input 
                   type="range" min="30000" max="600000" step="5000"
                   value={filters.priceRange}
                   onChange={(e) => setFilters(prev => ({ ...prev, priceRange: parseInt(e.target.value) }))}
-                  className="w-full accent-blue-500 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer"
                 />
               </div>
 
@@ -209,32 +204,32 @@ const LaptopSection: React.FC = () => {
           </div>
           
           {!isFiltersExpanded && (
-            <p className="text-[9px] text-slate-600 font-bold tech-font uppercase text-center mt-2 animate-pulse">Expand for Tuning</p>
+            <p className="text-xs text-slate-600 font-bold tech-font uppercase text-center mt-3 animate-pulse">Expand for Tuning</p>
           )}
         </div>
       </aside>
 
       {/* Main Grid */}
-      <div className="flex-1 space-y-8">
+      <div className="flex-1 space-y-10">
         {/* URL Importer HUD */}
-        <div className="glass-panel border-blue-500/20 rounded-3xl p-6 relative overflow-hidden bg-slate-950/60 shadow-2xl">
-           <div className="flex items-center gap-3 mb-6">
-              <Layers className="text-blue-400" size={20} />
-              <h3 className="text-sm font-black tech-font uppercase tracking-widest text-slate-300">Modular Link Sequencer</h3>
+        <div className="glass-panel border-blue-500/20 rounded-3xl p-8 relative overflow-hidden bg-slate-950/60 shadow-2xl">
+           <div className="flex items-center gap-4 mb-8">
+              <Layers className="text-blue-400" size={24} />
+              <h3 className="text-lg font-black tech-font uppercase tracking-widest text-slate-300">Modular Link Sequencer</h3>
            </div>
-           <div className="flex flex-col md:flex-row items-stretch gap-4">
+           <div className="flex flex-col md:flex-row items-stretch gap-6">
               <div className="flex-1 relative">
                  <input 
                    value={urlInput}
                    onChange={(e) => setUrlInput(e.target.value)}
                    onKeyDown={(e) => e.key === 'Enter' && addLinkToStage()}
                    placeholder="PASTE_AMAZON_FLIPKART_URL..."
-                   className="w-full bg-slate-900/80 border border-slate-800 rounded-2xl py-3 px-10 text-sm tech-font focus:outline-none focus:border-blue-500/50"
+                   className="w-full bg-slate-900/80 border border-slate-800 rounded-2xl py-4 px-12 text-base tech-font focus:outline-none focus:border-blue-500/50"
                  />
-                 <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600" size={14} />
-                 <button onClick={addLinkToStage} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-slate-800 hover:bg-slate-700 text-blue-400 rounded-xl"><Plus size={18}/></button>
+                 <LinkIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-600" size={18} />
+                 <button onClick={addLinkToStage} className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-slate-800 hover:bg-slate-700 text-blue-400 rounded-xl transition-colors"><Plus size={22}/></button>
               </div>
-              <button onClick={processBatch} disabled={stagedLinks.length === 0 || isBatchProcessing} className="px-8 py-3 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all">
+              <button onClick={processBatch} disabled={stagedLinks.length === 0 || isBatchProcessing} className="px-10 py-4 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
                 {isBatchProcessing ? <Loader2 className="animate-spin" /> : 'Compare_Batch'}
               </button>
            </div>
@@ -242,13 +237,13 @@ const LaptopSection: React.FC = () => {
 
         {/* Results Info */}
         <div className="flex items-center justify-between">
-           <h2 className="text-2xl font-black text-white flex items-center gap-3 tracking-tighter uppercase italic">
-             Hardware_Archive <span className="text-blue-500 text-xs font-mono not-italic bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">{filteredLaptops.length} FOUND</span>
+           <h2 className="text-3xl font-black text-white flex items-center gap-4 tracking-tighter uppercase italic">
+             Hardware_Archive <span className="text-blue-500 text-sm font-mono not-italic bg-blue-500/10 px-3 py-1 rounded border border-blue-500/20">{filteredLaptops.length} NODES</span>
            </h2>
         </div>
 
         {/* Laptop Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredLaptops.map((laptop, index) => {
             const isSelected = selectedLaptops.find(l => l.id === laptop.id);
             const ppi = calculatePPI(laptop);
@@ -256,24 +251,24 @@ const LaptopSection: React.FC = () => {
             return (
               <div 
                 key={laptop.id}
-                className={`stagger-item group glass-panel tech-border-corner transition-all duration-500 ${isSelected ? 'border-blue-500/60 bg-blue-500/5' : 'border-slate-800'} rounded-2xl overflow-hidden flex flex-col h-[580px]`}
+                className={`stagger-item group glass-panel tech-border-corner transition-all duration-500 ${isSelected ? 'border-blue-500/60 bg-blue-500/5' : 'border-slate-800'} rounded-3xl overflow-hidden flex flex-col h-[640px] shadow-lg hover:shadow-2xl`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
                   <img src={laptop.image} alt={laptop.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000 grayscale-[0.3] group-hover:grayscale-0" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
-                  <div className="absolute top-3 left-3 flex flex-col gap-1">
-                     <span className="bg-black/80 backdrop-blur-md px-2 py-0.5 rounded tech-font text-[8px] text-white border border-white/10 uppercase tracking-widest">{laptop.brand}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                     <span className="bg-slate-900/90 backdrop-blur-md px-3 py-1 rounded tech-font text-[10px] text-white force-white border border-white/10 uppercase tracking-widest font-black">{laptop.brand}</span>
                   </div>
-                  <div className="absolute top-3 right-3">
-                     <div className="bg-blue-600/90 text-white text-[9px] font-black tech-font px-2 py-1 rounded shadow-lg">V_{ppi.toFixed(1)}</div>
+                  <div className="absolute top-4 right-4">
+                     <div className="bg-blue-600/90 text-white force-white text-[10px] font-black tech-font px-3 py-1.5 rounded shadow-lg">V_{ppi.toFixed(1)}</div>
                   </div>
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-black text-md leading-tight text-white mb-4 uppercase tracking-tight group-hover:text-blue-400 transition-colors">{laptop.name}</h3>
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="font-black text-xl leading-tight text-white mb-6 uppercase tracking-tight group-hover:text-blue-400 transition-colors h-14 overflow-hidden">{laptop.name}</h3>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="grid grid-cols-2 gap-4 mb-8">
                     <SpecItem icon={Cpu} label="CPU" value={laptop.cpu} />
                     <SpecItem icon={HardDrive} label="GPU" value={laptop.gpu} />
                     <SpecItem icon={Terminal} label="RAM" value={`${laptop.ram}GB`} />
@@ -282,16 +277,16 @@ const LaptopSection: React.FC = () => {
                     <SpecItem icon={Scale} label="WEIGHT" value={`${laptop.weight}kg`} />
                   </div>
 
-                  <div className="mt-auto pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <div className="mt-auto pt-6 border-t border-slate-800 flex items-center justify-between">
                     <div>
-                      <p className="text-[8px] text-slate-500 font-black uppercase tracking-widest mb-1">VALUATION</p>
-                      <p className="text-xl font-black tech-font text-emerald-400">₹{laptop.price.toLocaleString('en-IN')}</p>
+                      <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-1">VALUATION</p>
+                      <p className="text-2xl font-black tech-font text-emerald-400">₹{laptop.price.toLocaleString('en-IN')}</p>
                     </div>
                     <button 
                       onClick={() => toggleSelection(laptop)}
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${isSelected ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40' : 'bg-slate-900 text-slate-500 hover:bg-slate-800 border border-slate-800'}`}
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${isSelected ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40' : 'bg-slate-900 text-slate-500 hover:bg-slate-800 border border-slate-800'}`}
                     >
-                      {isSelected ? <Check size={20} /> : <Plus size={20} />}
+                      {isSelected ? <Check size={24} /> : <Plus size={24} />}
                     </button>
                   </div>
                 </div>
@@ -299,15 +294,6 @@ const LaptopSection: React.FC = () => {
             );
           })}
         </div>
-
-        {filteredLaptops.length === 0 && (
-          <div className="py-20 text-center flex flex-col items-center justify-center space-y-4">
-             <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 text-slate-600">
-                <X size={32} />
-             </div>
-             <p className="tech-font text-slate-500 uppercase tracking-widest text-xs">No matching hardware nodes detected</p>
-          </div>
-        )}
       </div>
 
       <ComparisonTray 
@@ -330,9 +316,9 @@ const FilterGroup: React.FC<{
   title: string, options: any[], selected: any[], onToggle: (v: any) => void, suffix?: string, formatLabel?: (v: any) => string, isObject?: boolean 
 }> = ({ title, options, selected, onToggle, suffix = "", formatLabel, isObject }) => {
   return (
-    <div className="space-y-3">
-      <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{title}</p>
-      <div className="flex flex-wrap gap-2">
+    <div className="space-y-4">
+      <p className="text-xs font-black text-slate-500 uppercase tracking-widest">{title}</p>
+      <div className="flex flex-wrap gap-2.5">
         {options.map((opt) => {
           const id = isObject ? opt.id : opt;
           const label = isObject ? opt.l : (formatLabel ? formatLabel(opt) : `${opt}${suffix}`);
@@ -341,7 +327,7 @@ const FilterGroup: React.FC<{
             <button 
               key={id}
               onClick={() => onToggle(id)}
-              className={`px-3 py-1.5 rounded-lg text-[9px] font-bold tech-font border transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold tech-font border transition-all ${
                 isSelected ? 'bg-blue-600/20 border-blue-500 text-blue-400' : 'bg-slate-900 border-slate-800 text-slate-500 hover:border-slate-700'
               }`}
             >
@@ -355,12 +341,12 @@ const FilterGroup: React.FC<{
 };
 
 const SpecItem: React.FC<{ icon: any, label: string, value: string }> = ({ icon: Icon, label, value }) => (
-  <div className="bg-slate-900/50 p-2 rounded border border-slate-800/40">
-    <div className="flex items-center gap-1.5 text-slate-600 mb-1">
-      <Icon size={10} />
-      <span className="text-[7px] font-black uppercase tracking-widest">{label}</span>
+  <div className="bg-slate-900/40 p-3 rounded-xl border border-slate-800/40">
+    <div className="flex items-center gap-2 text-slate-500 mb-1.5">
+      <Icon size={12} />
+      <span className="text-[10px] font-black uppercase tracking-widest">{label}</span>
     </div>
-    <p className="text-[9px] text-slate-300 tech-font truncate font-medium">{value}</p>
+    <p className="text-xs text-slate-300 tech-font truncate font-bold">{value}</p>
   </div>
 );
 
